@@ -6,7 +6,7 @@ Ext.define('Test.store.MeterStore', {
 
     model: 'Test.model.MeterModel',
 
-    autoLoad: false,
+    autoLoad: true,
 
     proxy: {
         type: 'ajax',

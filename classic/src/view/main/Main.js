@@ -85,11 +85,11 @@ Ext.define('Test.view.main.Main', {
         iconCls: 'fa-user',
         html: 'Users tab'
     },
-    // {
-    //     title: 'Meters',
-    //     iconCls: 'fa-users',
-    //     xtype: 'meterReadsGrid'
-    // }, 
+    {
+        title: 'Meters',
+        iconCls: 'fa-users',
+        xtype: 'meterReadsGrid'
+    }, 
     {
         title: 'Settings',
         iconCls: 'fa-cog',
