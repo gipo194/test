@@ -73,28 +73,27 @@ Ext.define('Test.view.main.Main', {
         }
     },
 
-    items: [{
-        title: 'Home',
-        iconCls: 'fa-home',
-        // The following grid shares a store with the classic version's grid as well!
-        items: [{
-            xtype: 'mainlist'
-        }]
-    }, {
-        title: 'Users',
-        iconCls: 'fa-user',
-        html: 'Users tab'
-    },
-    {
-        title: 'Meters',
-        iconCls: 'fa-users',
-        xtype: 'meterReadsGrid'
-    }, 
-    {
-        title: 'Settings',
-        iconCls: 'fa-cog',
-        bind: {
-            html: '{loremIpsum}'
+    items: [
+        {
+            title: 'Meters',
+            iconCls: 'fa-users',
+            xtype: 'meterReadsGrid'
+        },
+        {
+            title: 'Static grid',
+            iconCls: 'fa-home',
+            // The following grid shares a store with the classic version's grid as well!
+            items: [{
+                xtype: 'mainlist'
+            }]
+        },
+
+        {
+            title: 'Settings',
+            iconCls: 'fa-cog',
+            bind: {
+                html: '{loremIpsum}'
+            }
         }
-    }]
+    ]
 });
