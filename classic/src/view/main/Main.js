@@ -84,9 +84,7 @@ Ext.define('Test.view.main.Main', {
     }, {
         title: 'Users',
         iconCls: 'fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        html: 'Users tab'
     }, {
         title: 'Meters',
         iconCls: 'fa-users',
