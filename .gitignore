@@ -1,6 +1,2 @@
 /build/development
 /build/temp
-bootstrap.*
-classic.json*
-modern.json*
-.sencha
