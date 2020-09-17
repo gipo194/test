@@ -36,8 +36,7 @@ Ext.define('Test.view.main.Main', {
                 text: '{name}'
             },
             flex: 0
-        },
-        iconCls: 'fa-th-list'
+        }
     },
 
     tabBar: {
@@ -85,11 +84,13 @@ Ext.define('Test.view.main.Main', {
         title: 'Users',
         iconCls: 'fa-user',
         html: 'Users tab'
-    }, {
-        title: 'Meters',
-        iconCls: 'fa-users',
-        xtype: 'meterReadsGrid'
-    }, {
+    },
+    // {
+    //     title: 'Meters',
+    //     iconCls: 'fa-users',
+    //     xtype: 'meterReadsGrid'
+    // }, 
+    {
         title: 'Settings',
         iconCls: 'fa-cog',
         bind: {
