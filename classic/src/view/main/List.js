@@ -6,9 +6,27 @@ Ext.define('Test.view.main.List', {
     xtype: 'mainlist',
 
     requires: [
-        'Test.store.Personnel'
+        'Test.store.Personnel',
+        'Ext.grid.plugin.Exporter'
     ],
 
+    bbar: [{
+        xtype: 'button',
+        text: 'export',
+        handler: function () {
+            var gridRef = Ext.ComponentQuery.query('grid')[0]
+            gridRef.saveDocumentAs({
+                type: 'xlsx',
+                charset: 'Shift-JIS',
+                title: 'Sample',
+                fileName: 'sample.xlsx'
+            });
+        }
+    }],
+    plugins: [{
+        ptype: 'gridexporter'
+    }],
+    
     title: 'Personnel',
 
     store: {

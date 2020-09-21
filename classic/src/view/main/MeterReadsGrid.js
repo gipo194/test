@@ -6,6 +6,8 @@ Ext.define('Test.view.main.MeterReadsGrid', {
         'Test.store.MeterStore'
     ],
 
+    plugins: 'gridexporter',
+    
     title: 'MeterReads',
 
     store: {
