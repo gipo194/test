@@ -58,7 +58,7 @@ Ext.define('Test.view.main.MeterForm', {
 
                 var meterStore = Ext.StoreMgr.get('meterStore');
 
-                store.load(
+                meterStore.load(
                     {
                         scope: this,
                         params:
