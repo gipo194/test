@@ -77,7 +77,7 @@ Ext.define('Test.view.main.Main', {
         {
             title: 'Meters',
             iconCls: 'fa-users',
-            xtype: 'meterReadsGrid'
+            xtype: 'meterHolder'
         },
         {
             title: 'Static grid',
