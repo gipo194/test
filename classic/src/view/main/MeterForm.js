@@ -13,27 +13,67 @@ Ext.define('Test.view.main.MeterForm', {
         anchor: '100%',
         labelWidth: 120
     },
-    
-    items: [{
-        allowBlank: false,
-        fieldLabel: 'User ID',
-        name: 'user',
-        emptyText: 'user id',
-        msgTarget: 'under'
-    }, {
-        allowBlank: false,
-        fieldLabel: 'Password',
-        name: 'pass',
-        emptyText: 'password',
-        inputType: 'password'
-    }, {
-        xtype: 'checkbox',
-        fieldLabel: 'Remember me',
-        name: 'remember'
-    }],
+
+    items: [
+        {
+            allowBlank: false,
+            fieldLabel: 'Meter ID',
+            itemId: 'meterId',
+            name: 'meterId',
+            emptyText: 'user id',
+            msgTarget: 'under'
+        },
+        {
+            fieldLabel: 'From',
+            xtype: 'datefield',
+            itemId: 'dtStartDate',
+            name: 'dtStartDate',
+            pickerAlign: 'tl-bl',
+            value: new Date(),
+            editable: false,
+            margin: '0 5 0 0',
+            allowBlank: false
+        },
+        {
+            fieldLabel: 'To',
+            xtype: 'datefield',
+            itemId: 'dtEndDate',
+            name: 'dtEndDate',
+            pickerAlign: 'tl-bl',
+            value: new Date(),
+            editable: false,
+            margin: '0 5 0 0',
+            allowBlank: false
+        }
+
+    ],
 
     buttons: [
-        { text: 'Register' },
-        { text: 'Login' }
+        {
+            text: 'Submit',
+            handler: function (btn) {
+                var meterId = btn.up('meterForm').down('#meterId').getValue();
+                var dtStartDate = btn.up('meterForm').down('#dtStartDate').getValue();
+                var dtEndDate = btn.up('meterForm').down('#dtEndDate').getValue();
+
+                var meterStore = Ext.StoreMgr.get('meterStore');
+
+                store.load(
+                    {
+                        scope: this,
+                        params:
+                        {
+                            meterId: meterId,
+                            dtStartDate: dtStartDate,
+                            dtEndDate: dtEndDate
+                        },
+                        callback: function (records, operation, success) {
+                            var formPanel = btn.up('meterForm');
+                            formPanel.setTitle("Count: " + meterStore.getCount());
+                        }
+                    });
+
+            }
+        }
     ]
 });

@@ -6,7 +6,7 @@ Ext.define('Test.store.MeterStore', {
 
     model: 'Test.model.MeterModel',
 
-    autoLoad: true,
+    autoLoad: false,
 
     proxy: {
         type: 'ajax',
@@ -18,7 +18,7 @@ Ext.define('Test.store.MeterStore', {
             'Accept': 'application/json'
         },
         actionMethods: {
-            read: 'GET'
+            read: 'POST'
         }
     }
 });
