@@ -19,13 +19,13 @@ Ext.define('Test.view.main.MeterHolder', {
 
     items: [
         {
-            title: 'Panel 1',
+            title: 'Form',
             flex: 1,
             margin: '0 10 0 0',
-            html: 'flex: 1'
+            xtype: 'meterForm'
         },
         {
-            title: 'Panel 3',
+            title: 'Response',
             flex: 2,
             xtype: 'meterReadsGrid'
         }
