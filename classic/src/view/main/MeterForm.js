@@ -20,7 +20,7 @@ Ext.define('Test.view.main.MeterForm', {
             fieldLabel: 'Meter ID',
             itemId: 'meterId',
             name: 'meterId',
-            emptyText: 'user id',
+            emptyText: 'meterId',
             msgTarget: 'under'
         },
         {
