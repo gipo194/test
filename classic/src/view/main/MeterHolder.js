@@ -19,7 +19,7 @@ Ext.define('Test.view.main.MeterHolder', {
 
     items: [
         {
-            title: 'Form',
+            title: 'Search Parameters',
             flex: 1,
             margin: '0 10 0 0',
             xtype: 'meterForm'

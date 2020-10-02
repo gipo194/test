@@ -9,16 +9,19 @@ Ext.define('Test.store.MeterStore', {
     autoLoad: false,
 
     proxy: {
-        type: 'ajax',
-        url: MySharedData.serverUrl + 'GetMeterReads',
+        type: 'jsonp',
+        url: MySharedData.serverUrl + 'Reads', //TODO: Depends upon which search type.
+        /* MetersFromProductAssignment, MetersFromStatementAccount, MetersFromUsagePoint, MetersInLocation*/ 
         reader: {
             type: 'json'
         },
         headers: {
-            'Accept': 'application/json'
+            Accept: 'application/json',
+            Origin: "http://sqewtmdlt01v02/MDL"
         },
         actionMethods: {
-            read: 'POST'
+           // read: 'POST'
+           read: 'GET'
         }
     }
 });

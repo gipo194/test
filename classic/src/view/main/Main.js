@@ -36,7 +36,8 @@ Ext.define('Test.view.main.Main', {
                 text: '{name}'
             },
             flex: 0
-        }
+        },
+        iconCls: "fa-cubes",
     },
 
     tabBar: {
@@ -75,25 +76,27 @@ Ext.define('Test.view.main.Main', {
 
     items: [
         {
-            title: 'Meters',
-            iconCls: 'fa-users',
+            title: 'Meter Reads',
+            iconCls: 'fa-book-reader',
             xtype: 'meterHolder'
         },
         {
-            title: 'Static grid',
-            iconCls: 'fa-home',
-            // The following grid shares a store with the classic version's grid as well!
-            items: [{
-                xtype: 'mainlist'
-            }]
-        },
-
-        {
-            title: 'Settings',
-            iconCls: 'fa-cog',
-            bind: {
-                html: '{loremIpsum}'
-            }
-        }
+            title: "On Demand Read",
+            iconCls: "fa-exclamation",
+            hidden: false,
+            html: "On Demand Read (and RVA button) goes here.",
+          },
+          {
+            title: "Meter Info",
+            iconCls: "fa-info-circle",
+            hidden: false,
+            html: "Meter Information goes here.",
+          },
+          {
+            title: "Flags",
+            iconCls: "fa-flag-checkered",
+            hidden: false,
+            html: "Flags go here.",
+          },
     ]
 });

@@ -7,6 +7,10 @@ Ext.define('Test.view.main.MainController', {
 
     alias: 'controller.main',
 
+    onSearchTypeSelected: function(sender, record) {
+        Ext.toast('Selected radiobutton', 'On SearchType', 't');
+    },
+
     onItemSelected: function (sender, record) {
         Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
     },
