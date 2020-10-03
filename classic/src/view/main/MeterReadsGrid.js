@@ -2,6 +2,32 @@ Ext.define('Test.view.main.MeterReadsGrid', {
     extend: 'Ext.grid.Panel',
     xtype: 'meterReadsGrid',
 
+    requires: [
+        'Ext.grid.plugin.Exporter'
+    ],
+
+    bbar: [{
+        xtype: 'button',
+        text: 'export',
+        handler: function () {
+            var meterId = Ext.state.Manager.get("meterId");
+            var searchType = Ext.state.Manager.get("searchType");
+            
+            var gridRef = Ext.ComponentQuery.query('grid')[0]
+            gridRef.saveDocumentAs({
+                type: 'xlsx',
+                charset: 'Shift-JIS',
+                title: searchType + ' ' + meterId,
+                fileName: meterId + '.xlsx',                
+            });
+        }
+    }],
+
+    plugins: [{
+        ptype: 'gridexporter'
+    }],
+    
+    
     title: 'MeterReads',
     emptyText: "No data retrieved.",
     store: 'meterStore',

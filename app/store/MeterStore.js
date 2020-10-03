@@ -20,7 +20,6 @@ Ext.define('Test.store.MeterStore', {
             Origin: "http://sqewtmdlt01v02/MDL"
         },
         actionMethods: {
-           // read: 'POST'
            read: 'GET'
         }
     }

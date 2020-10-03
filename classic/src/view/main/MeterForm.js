@@ -20,36 +20,39 @@ Ext.define("Test.view.main.MeterForm", {
       fieldLabel: "Search&nbsp;Type",
       layout: "fit",
       simpleValue: true,
-      bind: "{searchType}",
+      id: "searchType",
+      bind: { value: "{searchType}" },
+      listeners: {
+        // dynamically bind the caption of the Meter ID
+        // to the selected search type
+        change: function (field, newval) {
+          var formPanel = field.up("meterForm");
+          formPanel.down("#meterId").labelEl.update(newval);
+        },
+      },
       items: [
         {
           boxLabel: "Meter ID",
-          name: "searchType",
           inputValue: "Meter Number",
           id: "radioMeter",
-          checked: true,
         },
         {
           boxLabel: "Current&nbsp;Contract",
-          name: "searchType",
           inputValue: "Contract ID",
           id: "radioContract",
         },
         {
           boxLabel: "Device&nbsp;Location",
-          name: "searchType",
           inputValue: "Location Code",
           id: "radioLocation",
         },
         {
           boxLabel: "Contract&nbsp;Account",
-          name: "searchType",
           inputValue: "Account Number",
           id: "radioAccount",
         },
         {
           boxLabel: "Premise",
-          name: "searchType",
           inputValue: "Premise ID",
           id: "radioPremise",
         },
@@ -57,9 +60,9 @@ Ext.define("Test.view.main.MeterForm", {
     },
     {
       allowBlank: false,
-     // fieldLabel: {bind: "{searchType}"}, //TODO: Make this work 
-      fieldLabel: "ID",
+      fieldLabel: "dynamically set",
       itemId: "meterId",
+      id: "meterIdField",
       name: "meterId",
       value: "X150914150",
       emptyText: "meterId",
@@ -101,7 +104,7 @@ Ext.define("Test.view.main.MeterForm", {
       xtype: "checkboxfield",
       name: "chkHistorical",
       boxLabel: "Historical",
-      bind: "{isHistorical}"
+      bind: "{isHistorical}",
     },
   ],
 
@@ -112,9 +115,17 @@ Ext.define("Test.view.main.MeterForm", {
         var meterId = btn.up("meterForm").down("#meterId").getValue();
         var dtStartDate = btn.up("meterForm").down("#dtStartDate").getValue();
         var dtEndDate = btn.up("meterForm").down("#dtEndDate").getValue();
-        var dtEndEffectiveDate = btn.up("meterForm").down("#endEffectiveDate").getValue();
+        var dtEndEffectiveDate = btn
+          .up("meterForm")
+          .down("#endEffectiveDate")
+          .getValue();
+        var searchType = btn.up("meterForm").down("#searchType").getValue();
         var meterStore = Ext.StoreMgr.get("meterStore");
 
+        // memorize parameters in cookie for exporting spreadsheet
+        Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+        Ext.state.Manager.set("meterId", meterId);
+        Ext.state.Manager.set("searchType", searchType);
         meterStore.load({
           scope: this,
           params: {
@@ -124,8 +135,13 @@ Ext.define("Test.view.main.MeterForm", {
             dtEndEffectiveDate: dtEndEffectiveDate,
           },
           callback: function (records, operation, success) {
-            var formPanel = btn.up("meterForm");
-            formPanel.setTitle("Count: " + meterStore.getCount());
+            var panel = btn.up("meterForm").up("meterHolder").down("meterReadsGrid");
+          //  if ((meterStore.getCount() == 1)) {
+          //    //var d = records[0].data;  // here we can find the "No Data Found" object, determine if it is there?
+          //    panel.setTitle("No Data Found");
+          //  } else {
+              panel.setTitle(meterStore.getCount() + " total reads");
+          //  }
           },
         });
       },
