@@ -10,7 +10,7 @@ Ext.define('Test.store.MeterStore', {
 
     listeners: {
         metachange: function(store, meta) {
-            alert('Store metachange event fired');  // TODO: get this to fire  
+           // alert('Store metachange event fired'); 
             meterReadsGrid.reconfigure(store, meta.columns);                
         }
     },
@@ -18,14 +18,7 @@ Ext.define('Test.store.MeterStore', {
     proxy: {
         type: 'jsonp',        
         url: MySharedData.serverUrl + 'ReadsMetadata', 
-        listeners: {
-            metachange: function(proxy, meta) {
-                alert('Proxy metachange event fired');  // TODO: get this to fire   
-   
-
-            }
-        },
-        
+       
         reader: {
             type: 'json',
             rootProperty: "data"
