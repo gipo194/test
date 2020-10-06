@@ -65,7 +65,7 @@ Ext.define("Test.view.main.MeterForm", {
       id: "meterIdField",
       name: "meterId",
       value: "X150914150",
-      emptyText: "meterId",
+      emptyText: "",
       msgTarget: "under",
     },
     {
