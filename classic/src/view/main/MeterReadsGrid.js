@@ -1,6 +1,7 @@
 Ext.define('Test.view.main.MeterReadsGrid', {
     extend: 'Ext.grid.Panel',
     xtype: 'meterReadsGrid',
+    id: 'meterReadsGrid',
 
     requires: [
         'Ext.grid.plugin.Exporter'

@@ -10,8 +10,8 @@ Ext.define('Test.store.MeterStore', {
 
     listeners: {
         metachange: function(store, meta) {
-           // alert('Store metachange event fired'); 
-            meterReadsGrid.reconfigure(store, meta.columns);                
+          var grid = Ext.getCmp('meterReadsGrid');
+          grid.reconfigure(store, meta.columns);                
         }
     },
     

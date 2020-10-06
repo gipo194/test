@@ -115,10 +115,7 @@ Ext.define("Test.view.main.MeterForm", {
         var meterId = btn.up("meterForm").down("#meterId").getValue();
         var dtStartDate = btn.up("meterForm").down("#dtStartDate").getValue();
         var dtEndDate = btn.up("meterForm").down("#dtEndDate").getValue();
-        var dtEndEffectiveDate = btn
-          .up("meterForm")
-          .down("#endEffectiveDate")
-          .getValue();
+        var dtEndEffectiveDate = btn.up("meterForm").down("#endEffectiveDate").getValue();
         var searchType = btn.up("meterForm").down("#searchType").getValue();
         var meterStore = Ext.StoreMgr.get("meterStore");
 
