@@ -9,7 +9,7 @@ Ext.define('Test.view.main.MeterReadsGrid', {
 
     bbar: [{
         xtype: 'button',
-        text: 'export',
+        text: 'Export',
         handler: function () {
             var meterId = Ext.state.Manager.get("meterId");
             var searchType = Ext.state.Manager.get("searchType");
@@ -31,6 +31,7 @@ Ext.define('Test.view.main.MeterReadsGrid', {
     
     title: 'MeterReads',
     emptyText: "No data retrieved.",
+    
     store: 'meterStore',
 
     columns: [

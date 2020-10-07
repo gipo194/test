@@ -4,7 +4,6 @@ Ext.define("Test.view.main.MeterForm", {
 
   title: "Search",
   frame: true,
-  // width: 320,
   bodyPadding: 10,
 
   defaultType: "textfield",
@@ -40,21 +39,25 @@ Ext.define("Test.view.main.MeterForm", {
           boxLabel: "Current&nbsp;Contract",
           inputValue: "Contract ID",
           id: "radioContract",
+          disabled: true
         },
         {
           boxLabel: "Device&nbsp;Location",
           inputValue: "Location Code",
           id: "radioLocation",
+          disabled: true
         },
         {
           boxLabel: "Contract&nbsp;Account",
           inputValue: "Account Number",
           id: "radioAccount",
+          disabled: true
         },
         {
           boxLabel: "Premise",
           inputValue: "Premise ID",
           id: "radioPremise",
+          disabled: true
         },
       ],
     },
@@ -64,9 +67,8 @@ Ext.define("Test.view.main.MeterForm", {
       itemId: "meterId",
       id: "meterIdField",
       name: "meterId",
-      value: "X150914150",
-      emptyText: "",
-      msgTarget: "under",
+      value: "",
+      emptyText: "",    
     },
     {
       fieldLabel: "From",
@@ -96,7 +98,8 @@ Ext.define("Test.view.main.MeterForm", {
       name: "endEffectiveDate",
       fieldLabel: "End&nbsp;Effective&nbsp;Date",
       value: new Date(4000, 11, 31, 0, 0, 0),
-      labelWidth: "auto",
+      pickerAlign: "tl-bl",
+      margin: "0 5 0 0",
       editable: false,
       allowBlank: false,
     },

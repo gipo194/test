@@ -23,7 +23,8 @@ Ext.define('Test.view.main.MeterHolder', {
             //margin: '0 10 0 0',
             xtype: 'meterForm',
             collapsible: true,
-            width: 220
+            resizable: true,
+            width: 320 // 320 in Aria theme
         },
         {
             title: 'Response',
