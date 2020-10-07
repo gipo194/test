@@ -21,15 +21,34 @@ S4 - Nice to have
 * [P1 S3] Rename the entire app to MDL instead of "test".
 
 * [P1 S3] Column widths in MeterReadsGrid should be automatically sized to the greatest width of either the header or the column content.
+  It's okay to leave unused space on the right side.
 
 * [P2 S4] I want to use MeterReadsGrid as a class which I can inherit from, because it is column-header agnostic and I will re-use it for every grid of data.
+
+* [P1S1] Add the information panels.  Figure out how they can appear in the UI the best.
+  Display them right after searching for a meter:
+  * Billing Address
+  * Service Address
+  * Meter Information
+  * Acronyms
 
 ## Things Shaun can/should do by himself
 
 ### In Sencha
-* [P1 S1] There are five search types.  Make these call five differing web methods per MDL specs.
+* [P1 S1] There are five search types in MeterForm.  Make these call five differing web methods per MDL specs.
   Some of the types just look up what meter number should be used, then do a MeterID search.
   At least outline it first with pseudocode comments.
+
+* [P1S1] Split the Reads tab up into 
+  * Normal reads grid
+  * Skeleton reads grid
+  * Raw reads grid
+
+* [P1S1] Complete the Meter Info tab (example U005168857)
+
+* [P1S1] Complete the Flags tab
+
+* [P1S1] Complete the On Demand Reads tab
 
 ### In C# webservice
 * [P1 S1] Put the MetaData into every method.
