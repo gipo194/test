@@ -25,7 +25,7 @@ S4 - Nice to have
 
 * [P2 S4] I want to use MeterReadsGrid as a class which I can inherit from, because it is column-header agnostic and I will re-use it for every grid of data.
 
-* [P1S1] Add the information panels.  Figure out how they can appear in the UI the best.
+* [P1 S1] Add the information panels.  Figure out how they can appear in the UI the best.
   Display them right after searching for a meter:
   * Billing Address
   * Service Address
@@ -38,6 +38,7 @@ S4 - Nice to have
 * [P1 S1] There are five search types in MeterForm.  Make these call five differing web methods per MDL specs.
   Some of the types just look up what meter number should be used, then do a MeterID search.
   At least outline it first with pseudocode comments.
+  start with c:\source\metering\mdl\mdl.silverlight.common\mdl ui to Oracle mapping.vsd
 
 * [P1 S1] Split the Reads tab up into three reads types
   * Normal reads grid
