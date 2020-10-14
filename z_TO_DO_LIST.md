@@ -39,16 +39,16 @@ S4 - Nice to have
   Some of the types just look up what meter number should be used, then do a MeterID search.
   At least outline it first with pseudocode comments.
 
-* [P1S1] Split the Reads tab up into 
+* [P1 S1] Split the Reads tab up into three reads types
   * Normal reads grid
-  * Skeleton reads grid
-  * Raw reads grid
+  * Complete the Skeleton reads grid (currently hidden)
+  * Complete the Raw reads grid (currently hidden)
 
-* [P1S1] Complete the Meter Info tab (example U005168857)
+* [P1 S1] Complete the Meter Info tab (example U005168857)
 
-* [P1S1] Complete the Flags tab
+* [P1 S1] Complete the Flags tab
 
-* [P1S1] Complete the On Demand Reads tab
+* [P1 S1] Complete the On Demand Reads tab
 
 ### In C# webservice
 * [P1 S1] Put the MetaData into every method.

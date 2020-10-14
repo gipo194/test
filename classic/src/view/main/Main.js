@@ -1,9 +1,23 @@
+
+// Clean up URL parameters:
+var q = location.search
+  .toUpperCase()
+  .replace("METERID", "MeterID")
+  .replace("FROM", "From")
+  .replace("TO", "To")
+  .replace("END", "End");
+var o = Ext.Object.fromQueryString(q);
+
+// memorize parameters if they are specified:
+if (o.MeterID != null) MySharedData.meterId = o.MeterID;
+if (o.From != null) MySharedData.fromDate = o.From;
+if (o.To != null) MySharedData.toDate = o.To;
+if (o.End != null) MySharedData.endEffectiveDate = o.End;
+
 /**
  * This class is the main view for the application. It is specified in app.js as the
  * "mainView" property. That setting automatically applies the "viewport"
  * plugin causing this view to become the body element (i.e., the viewport).
- *
- * TODO - Replace this content of this view to suite the needs of your application.
  */
 Ext.define("Test.view.main.Main", {
   extend: "Ext.tab.Panel",

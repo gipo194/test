@@ -27,10 +27,10 @@ Ext.define('Test.view.main.MeterHolder', {
             width: 320 // 320 in Aria theme
         },
         {
-            title: 'Response',
+            title: null,            
             region: 'center',
             collapsible: false,
-            xtype: 'meterReadsGrid',      
+            xtype: 'readsTabs',      
         }
     ]
 });

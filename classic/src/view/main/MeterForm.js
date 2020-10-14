@@ -1,3 +1,4 @@
+
 Ext.define("Test.view.main.MeterForm", {
   extend: "Ext.form.Panel",
   xtype: "meterForm",
@@ -27,6 +28,7 @@ Ext.define("Test.view.main.MeterForm", {
         change: function (field, newval) {
           var formPanel = field.up("meterForm");
           formPanel.down("#meterId").labelEl.update(newval);
+          MySharedData.searchType = newval; // memorize in Global variable
         },
       },
       items: [
@@ -39,25 +41,25 @@ Ext.define("Test.view.main.MeterForm", {
           boxLabel: "Current&nbsp;Contract",
           inputValue: "Contract ID",
           id: "radioContract",
-          disabled: true
+          disabled: true,
         },
         {
           boxLabel: "Device&nbsp;Location",
           inputValue: "Location Code",
           id: "radioLocation",
-          disabled: true
+          disabled: true,
         },
         {
           boxLabel: "Contract&nbsp;Account",
           inputValue: "Account Number",
           id: "radioAccount",
-          disabled: true
+          disabled: true,
         },
         {
           boxLabel: "Premise",
           inputValue: "Premise ID",
           id: "radioPremise",
-          disabled: true
+          disabled: true,
         },
       ],
     },
@@ -67,8 +69,8 @@ Ext.define("Test.view.main.MeterForm", {
       itemId: "meterId",
       id: "meterIdField",
       name: "meterId",
-      value: "",
-      emptyText: "",    
+      value: MySharedData.meterId,
+      emptyText: "",
     },
     {
       fieldLabel: "From",
@@ -76,7 +78,7 @@ Ext.define("Test.view.main.MeterForm", {
       itemId: "dtStartDate",
       name: "dtStartDate",
       pickerAlign: "tl-bl",
-      value: new Date(new Date() - 1000 * 60 * 60 * 24 * 100), // 100 days ago in milliseconds
+      value: MySharedData.fromDate,
       editable: false,
       margin: "0 5 0 0",
       allowBlank: false,
@@ -87,7 +89,7 @@ Ext.define("Test.view.main.MeterForm", {
       itemId: "dtEndDate",
       name: "dtEndDate",
       pickerAlign: "tl-bl",
-      value: new Date(),
+      value: MySharedData.toDate,
       editable: false,
       margin: "0 5 0 0",
       allowBlank: false,
@@ -97,7 +99,7 @@ Ext.define("Test.view.main.MeterForm", {
       itemId: "endEffectiveDate",
       name: "endEffectiveDate",
       fieldLabel: "End&nbsp;Effective&nbsp;Date",
-      value: new Date(4000, 11, 31, 0, 0, 0),
+      value: MySharedData.endEffectiveDate,
       pickerAlign: "tl-bl",
       margin: "0 5 0 0",
       editable: false,
@@ -118,14 +120,20 @@ Ext.define("Test.view.main.MeterForm", {
         var meterId = btn.up("meterForm").down("#meterId").getValue();
         var dtStartDate = btn.up("meterForm").down("#dtStartDate").getValue();
         var dtEndDate = btn.up("meterForm").down("#dtEndDate").getValue();
-        var dtEndEffectiveDate = btn.up("meterForm").down("#endEffectiveDate").getValue();
+        var dtEndEffectiveDate = btn
+          .up("meterForm")
+          .down("#endEffectiveDate")
+          .getValue();
         var searchType = btn.up("meterForm").down("#searchType").getValue();
         var meterStore = Ext.StoreMgr.get("meterStore");
 
-        // memorize parameters in cookie for exporting spreadsheet
+        /*   // memorize parameters in cookie for exporting spreadsheet
         Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
         Ext.state.Manager.set("meterId", meterId);
         Ext.state.Manager.set("searchType", searchType);
+      */
+        MySharedData.meterId = meterId;
+        MySharedData.searchType = searchType;
         meterStore.load({
           scope: this,
           params: {
@@ -135,13 +143,16 @@ Ext.define("Test.view.main.MeterForm", {
             dtEndEffectiveDate: dtEndEffectiveDate,
           },
           callback: function (records, operation, success) {
-            var panel = btn.up("meterForm").up("meterHolder").down("meterReadsGrid");
-          //  if ((meterStore.getCount() == 1)) {
-          //    //var d = records[0].data;  // here we can find the "No Data Found" object, determine if it is there?
-          //    panel.setTitle("No Data Found");
-          //  } else {
-              panel.setTitle(meterStore.getCount() + " total reads");
-          //  }
+            var panel = btn
+              .up("meterForm")
+              .up("meterHolder")
+              .down("meterReadsGrid");
+            //  if ((meterStore.getCount() == 1)) {
+            //    //var d = records[0].data;  // here we can find the "No Data Found" object, determine if it is there?
+            //    panel.setTitle("No Data Found");
+            //  } else {
+            panel.setTitle(meterStore.getCount() + " total reads");
+            //  }
           },
         });
       },

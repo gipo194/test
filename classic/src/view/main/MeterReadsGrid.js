@@ -11,8 +11,8 @@ Ext.define('Test.view.main.MeterReadsGrid', {
         xtype: 'button',
         text: 'Export',
         handler: function () {
-            var meterId = Ext.state.Manager.get("meterId");
-            var searchType = Ext.state.Manager.get("searchType");
+            var meterId = MySharedData.meterId;
+            var searchType = MySharedData.searchType;
             
             var gridRef = Ext.ComponentQuery.query('grid')[0]
             gridRef.saveDocumentAs({
