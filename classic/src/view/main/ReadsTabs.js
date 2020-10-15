@@ -15,12 +15,12 @@ Ext.define('Test.view.main.ReadsTabs', {
         {
             title: 'Skeleton Reads',
             html: 'Skeleton Reads content.',
-            hidden: true
+            //hidden: true
         },
         {
             title: 'Raw Reads',
             html: 'Raw Reads content.',
-            hidden: true
+            //hidden: true
         }
     ]
 });
