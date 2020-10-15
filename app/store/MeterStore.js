@@ -10,6 +10,7 @@ Ext.define('Test.store.MeterStore', {
 
     listeners: {
         metachange: function(store, meta) {
+            // Refresh Meter Reads grid
           var grid = Ext.getCmp('meterReadsGrid');
           grid.reconfigure(store, meta.columns);                
         }
@@ -18,6 +19,15 @@ Ext.define('Test.store.MeterStore', {
     proxy: {
         type: 'jsonp',        
         url: MySharedData.serverUrl + 'ReadsMetadata', 
+        /* Reads Tab:           
+                by Meter:           GetMeterReads
+                by ProdAssign:      GetMetersFromProductAssignment
+                by ContractAcct:    GetMetersFromStatementAccount
+                by UsagePoint:      GetMetersFromUsagePoint
+                by Premise:         GetPremiseTokenSearch
+           Raw Reads Tab:           GetRawReads
+           Skeleton Reads Tab:      GetSkelMeterReads           
+         */
        
         reader: {
             type: 'json',

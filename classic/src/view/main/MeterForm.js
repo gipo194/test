@@ -78,7 +78,7 @@ Ext.define("Test.view.main.MeterForm", {
       itemId: "dtStartDate",
       name: "dtStartDate",
       pickerAlign: "tl-bl",
-      value: MySharedData.fromDate,
+      value: MySharedData.dtStartDate,
       editable: false,
       margin: "0 5 0 0",
       allowBlank: false,
@@ -89,7 +89,7 @@ Ext.define("Test.view.main.MeterForm", {
       itemId: "dtEndDate",
       name: "dtEndDate",
       pickerAlign: "tl-bl",
-      value: MySharedData.toDate,
+      value: MySharedData.dtEndDate,
       editable: false,
       margin: "0 5 0 0",
       allowBlank: false,
@@ -99,7 +99,7 @@ Ext.define("Test.view.main.MeterForm", {
       itemId: "endEffectiveDate",
       name: "endEffectiveDate",
       fieldLabel: "End&nbsp;Effective&nbsp;Date",
-      value: MySharedData.endEffectiveDate,
+      value: MySharedData.dtEndEffectiveDate,
       pickerAlign: "tl-bl",
       margin: "0 5 0 0",
       editable: false,
@@ -117,23 +117,22 @@ Ext.define("Test.view.main.MeterForm", {
     {
       text: "Search",
       handler: function (btn) {
-        var meterId = btn.up("meterForm").down("#meterId").getValue();
-        var dtStartDate = btn.up("meterForm").down("#dtStartDate").getValue();
-        var dtEndDate = btn.up("meterForm").down("#dtEndDate").getValue();
-        var dtEndEffectiveDate = btn
-          .up("meterForm")
-          .down("#endEffectiveDate")
-          .getValue();
-        var searchType = btn.up("meterForm").down("#searchType").getValue();
-        var meterStore = Ext.StoreMgr.get("meterStore");
+        var form = btn.up("meterForm");
 
-        /*   // memorize parameters in cookie for exporting spreadsheet
-        Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
-        Ext.state.Manager.set("meterId", meterId);
-        Ext.state.Manager.set("searchType", searchType);
-      */
-        MySharedData.meterId = meterId;
+        // Scrape values off of the form:
+        var meterId = form.down("#meterId").getValue();
+        var dtStartDate = form.down("#dtStartDate").getValue();
+        var dtEndDate = form.down("#dtEndDate").getValue();
+        var dtEndEffectiveDate = form.down("#endEffectiveDate").getValue();
+        var searchType = form.down("#searchType").getValue();
+        // Memorize
+        MySharedData.meterId = meterId;        
         MySharedData.searchType = searchType;
+        MySharedData.dtStartDate = dtStartDate;
+        MySharedData.dtEndDate = dtEndDate;
+        MySharedData.dtEndEffectiveDate = dtEndEffectiveDate;
+
+        var meterStore = Ext.StoreMgr.get("meterStore");
         meterStore.load({
           scope: this,
           params: {
@@ -143,16 +142,8 @@ Ext.define("Test.view.main.MeterForm", {
             dtEndEffectiveDate: dtEndEffectiveDate,
           },
           callback: function (records, operation, success) {
-            var panel = btn
-              .up("meterForm")
-              .up("meterHolder")
-              .down("meterReadsGrid");
-            //  if ((meterStore.getCount() == 1)) {
-            //    //var d = records[0].data;  // here we can find the "No Data Found" object, determine if it is there?
-            //    panel.setTitle("No Data Found");
-            //  } else {
+            var panel = btn.up("meterForm").up("meterHolder").down("meterReadsGrid");
             panel.setTitle(meterStore.getCount() + " total reads");
-            //  }
           },
         });
       },

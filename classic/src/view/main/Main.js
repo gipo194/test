@@ -10,9 +10,9 @@ var o = Ext.Object.fromQueryString(q);
 
 // memorize parameters if they are specified:
 if (o.MeterID != null) MySharedData.meterId = o.MeterID;
-if (o.From != null) MySharedData.fromDate = o.From;
-if (o.To != null) MySharedData.toDate = o.To;
-if (o.End != null) MySharedData.endEffectiveDate = o.End;
+if (o.From != null) MySharedData.dtStartDate = o.From;
+if (o.To != null) MySharedData.dtEndDate = o.To;
+if (o.End != null) MySharedData.dtEndEffectiveDate = o.End;
 
 /**
  * This class is the main view for the application. It is specified in app.js as the

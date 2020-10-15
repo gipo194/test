@@ -28,11 +28,11 @@ Ext.define('Test.view.main.MeterReadsGrid', {
         ptype: 'gridexporter'
     }],
     
-    
     title: 'MeterReads',
-    emptyText: "No data retrieved.",
+    emptyText: "No data could be retrieved for meter " + MySharedData.meterId + ".",
     
-    store: 'meterStore',
+    store: 'meterStore', 
+    scrollable: true, 
 
     columns: [
         { text: 'READ TIME', dataIndex: 'READ TIME', flex: 1 },
@@ -42,5 +42,15 @@ Ext.define('Test.view.main.MeterReadsGrid', {
         { text: 'USAGE KWH', dataIndex: 'USAGE KWH', flex: 1 },
         { text: 'DAILY KW', dataIndex: 'DAILY KW', flex: 1 },
         { text: 'READ FLAG', dataIndex: 'READ FLAG', flex: 1 }
-    ]
+    ],
+    viewConfig : {
+        listeners : {
+        // Attempting to get the columns to autosize.
+         afterlayout : function (dataview) {
+          Ext.each(dataview.panel.columns, function (column) {
+            column.autoSize();
+          })
+         }
+        }
+       },
 });
