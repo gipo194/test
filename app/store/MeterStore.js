@@ -3,22 +3,42 @@ Ext.define('Test.store.MeterStore', {
 
     alias: 'store.meterStore',
     storeId: 'meterStore',
-
+    
     model: 'Test.model.MeterModel',
-
+    
     autoLoad: false,
 
+    listeners: {
+        metachange: function(store, meta) {
+            // Refresh Meter Reads grid
+          var grid = Ext.getCmp('meterReadsGrid');
+          grid.reconfigure(store, meta.columns);                
+        }
+    },
+    
     proxy: {
-        type: 'ajax',
-        url: MySharedData.serverUrl + 'GetMeterReads',
+        type: 'jsonp',        
+        url: MySharedData.serverUrl + 'ReadsMetadata', 
+        /* Reads Tab:           
+                by Meter:           GetMeterReads
+                by ProdAssign:      GetMetersFromProductAssignment
+                by ContractAcct:    GetMetersFromStatementAccount
+                by UsagePoint:      GetMetersFromUsagePoint
+                by Premise:         GetPremiseTokenSearch
+           Raw Reads Tab:           GetRawReads
+           Skeleton Reads Tab:      GetSkelMeterReads           
+         */
+       
         reader: {
-            type: 'json'
+            type: 'json',
+            rootProperty: "data"
         },
         headers: {
-            'Accept': 'application/json'
+            Accept: 'application/json',
+            Origin: "http://sqewtmdlt01v02/MDL"
         },
         actionMethods: {
-            read: 'POST'
-        }
+           read: 'GET'
+        },
     }
 });

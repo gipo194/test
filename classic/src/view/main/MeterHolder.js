@@ -2,32 +2,35 @@ Ext.define('Test.view.main.MeterHolder', {
     extend: 'Ext.panel.Panel',
     xtype: 'meterHolder',
     
-    title: 'Neter Holder',
-
-    layout: {
-        type: 'hbox',
-        pack: 'start',
-        align: 'stretch'
-    },
-
-    bodyPadding: 10,
+    title: 'Meter Holder',    
+    cls: 'panels-container',
+    width: '100%',
+    layout: 'border',
+    cls: Ext.baseCSSPrefix + 'shadow',
+    requires: [
+        'Ext.layout.container.Border'
+    ],
 
     defaults: {
-        frame: true,
+       // split: true,
         bodyPadding: 10
     },
 
     items: [
         {
-            title: 'Form',
-            flex: 1,
-            margin: '0 10 0 0',
-            xtype: 'meterForm'
+            title: 'Search Parameters',
+            region: 'west',
+            //margin: '0 10 0 0',
+            xtype: 'meterForm',
+            collapsible: true,
+            resizable: true,
+            width: 320 // 320 in Aria theme
         },
         {
-            title: 'Response',
-            flex: 2,
-            xtype: 'meterReadsGrid'
+            title: null,            
+            region: 'center',
+            collapsible: false,
+            xtype: 'readsTabs',      
         }
     ]
 });
