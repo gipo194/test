@@ -18,7 +18,7 @@ Ext.define('Test.store.MeterStore', {
     
     proxy: {
         type: 'jsonp',        
-        url: MySharedData.serverUrl + 'ReadsMetadata', 
+        url: MySharedData.serverUrl + 'Reads', 
         /* Reads Tab:           
                 by Meter:           GetMeterReads
                 by ProdAssign:      GetMetersFromProductAssignment
