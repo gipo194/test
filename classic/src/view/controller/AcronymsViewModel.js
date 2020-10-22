@@ -2,17 +2,29 @@ Ext.define("Test.view.AcronymsViewModel", {
   extend: "Ext.app.ViewModel",
 
   alias: "viewmodel.tree-list",
-
+  
   formulas: {
     selectionText: function (get) {
       var selection = get("treelist.selection"),
         path;
 
       if (selection) {
-        path = selection.getPath("text");
-        path = path.replace(/^\/Root/, "");
-
-        return "Selected: " + path;
+        if (selection.raw.leaf) {
+          path = selection.getPath("text");
+          path = path.replace(/^\/Root/, "");
+          meaning = selection.raw.Meaning;
+          tooltip = selection.raw.Tooltip;
+          text = selection.raw.text;
+          ret = "";
+          if (path.includes("Read Sources")) {
+            ret = "Gateway " + text + "<br /><br />" + meaning;
+          } else if (path.includes("Read Flags")) {
+            ret = "Flag \"" + text + "\" stands for " + meaning;
+          } else {
+            ret = meaning + "<br /><br /><i>" + tooltip + "</i>";
+          }
+          return ret;
+        }
       } else {
         return "No node selected";
       }
@@ -72,7 +84,12 @@ Ext.define("Test.view.AcronymsViewModel", {
                   "Change In Offset. When the difference in consumption values for two successive reads does not agree with the difference in TOU Bin values, a new offset is calculated. A determination is made by the VEE process to determine the cause for the offset change. If the cause is due to a reset, some sort of billing adjustment is probably necessary in the near future and the discrepancy is flagged in MDW as CIO.",
                 leaf: true,
               },
-              { text: "DNR", Meaning: "Demand did not Reset", Tooltip: "" },
+              {
+                text: "DNR",
+                Meaning: "Demand did not Reset",
+                Tooltip: "",
+                leaf: true,
+              },
               {
                 text: "DRM",
                 Meaning: "Demand Read Missing",
@@ -87,14 +104,8 @@ Ext.define("Test.view.AcronymsViewModel", {
                 leaf: true,
               },
               {
-                text: "",
-                Meaning: "Estimation based on 2 week old read",
-                Tooltip: "",
-                leaf: true,
-              },
-              {
                 text: "E02",
-                Meaning: "",
+                Meaning: "Estimation based on 2 week old read",
                 Tooltip:
                   "Use the two-week-old daily good read for the same customer, location, and daytype.",
                 leaf: true,
@@ -149,14 +160,8 @@ Ext.define("Test.view.AcronymsViewModel", {
                 leaf: true,
               },
               {
-                text: "",
-                Meaning: "Estimation Threshold Overflow",
-                Tooltip: "",
-                leaf: true,
-              },
-              {
                 text: "ETO",
-                Meaning: "",
+                Meaning: "Estimation Threshold Overflow",
                 Tooltip:
                   "Estimation Threshold Overflow (read status = G). If the number of days between the current good read and the last good read is greater than the CGR threshold limit, then the last good read is tagged ETO.",
                 leaf: true,

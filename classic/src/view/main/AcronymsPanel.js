@@ -53,7 +53,7 @@ Ext.define("Test.view.main.AcronymsPanel", {
   items: [
     {
       region: "west",
-      width: 250,
+     // width: 220,
       split: true,
       reference: "treelistContainer",
       layout: { type: "vbox", align: "stretch" },
@@ -61,6 +61,16 @@ Ext.define("Test.view.main.AcronymsPanel", {
       scrollable: "y",
       items: [
         { xtype: "treelist", reference: "treelist", bind: "{navItems}" },
+        {
+          region: "center",
+          bodyPadding: 10,
+        },
+      ],
+    },
+    {
+      region: "center",      
+      reference: "treelistDisplay",
+      items: [
         {
           region: "center",
           bodyPadding: 10,
