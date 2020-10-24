@@ -1,4 +1,5 @@
 Ext.define('Test.store.Personnel', {
+    // STAR TREK EXAMPLE
     extend: 'Ext.data.Store',
 
     alias: 'store.personnel',

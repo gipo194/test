@@ -1,4 +1,5 @@
 Ext.define("Test.store.Nameplate", {
+  // see http://sqewtmdlt01v02/MPARestService/Help/Api/GET-api-NamePlate_meterId
     extend: "Ext.data.Store",
     alias: "store.nameplateStore",
     storeId: "nameplateStore",

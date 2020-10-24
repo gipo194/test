@@ -1,4 +1,5 @@
 Ext.define("Test.model.Nameplate", {
+  // see http://sqewtmdlt01v02/MPARestService/Help/ResourceModel?modelName=MeterNamePlate
   extend: "Test.model.Base",
   fields: [
     { name: "meterID", type: "string" },

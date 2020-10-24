@@ -1,4 +1,5 @@
 Ext.define("Test.model.PowerState", {
+  // see http://sqewtmdlt01v02/MPARestService/Help/ResourceModel?modelName=PowerState 
   extend: "Test.model.Base",
 
   fields: [

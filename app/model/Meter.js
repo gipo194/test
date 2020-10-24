@@ -1,4 +1,5 @@
-Ext.define("Test.model.MeterDetails", {
+Ext.define("Test.model.Meter", {
+  // see: http://sqewtmdlt01v02/MPARestService/Help/ResourceModel?modelName=Meter 
   extend: "Test.model.Base",
   fields: [
     { name: "MeterId", type: "string" },

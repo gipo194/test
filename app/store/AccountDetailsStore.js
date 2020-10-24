@@ -1,4 +1,5 @@
 Ext.define("Test.store.AccountDetailsStore", {
+  // see: http://sqewtmdlt01v02/MPARestService/Help/Api/GET-api-AccountDetails_meterId_productAssignId_stmtAcct_usagePoint_endEffectiveDate 
     extend: "Ext.data.Store",
     alias: "store.accountDetailsStore",
     storeId: "accountDetailsStore",

@@ -1,7 +1,7 @@
 Ext.define('Test.model.MeterModel', {
     extend: 'Test.model.Base',
 
-    fields: [
+    fields: [ // Field list is irrelevant here
         'READ TIME',
         'ENTRY_DATE',
         'READ SRC',
