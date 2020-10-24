@@ -24,5 +24,9 @@ Ext.define("Test.view.main.ReadsTabs", {
       title: "AcronymsPanel",
       xtype: "acronymsPanel",
     },
+    {
+      title: "AccountDetails",
+      xtype: "accountDetailsPanel",
+    },
   ],
 });

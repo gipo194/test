@@ -1,6 +1,5 @@
 Ext.define('Test.view.controller.AcronymsController', {
     extend: 'Ext.app.ViewController',
-
     alias: 'controller.tree-list',
 
     onToggleConfig: function(menuitem) {
