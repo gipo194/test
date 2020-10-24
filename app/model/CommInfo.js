@@ -1,4 +1,4 @@
-Ext.define("Test.model.Personnel", {
+Ext.define("Test.model.CommInfo", {
   extend: "Test.model.Base",
 
   fields: [

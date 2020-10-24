@@ -27,6 +27,6 @@ Ext.define('Test.Application', {
 
     stores: [
         'MeterStore', 'SkeletonStore', 'RawReadsStore'
-        // ,'AcronymsStore'
+        ,'AccountDetailsStore', 'RawReadsStore',        
     ]
 });

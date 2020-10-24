@@ -1,8 +1,8 @@
-Ext.define("Test.store.CommInfo", {
+Ext.define("Test.store.CommInfoStore", {
     extend: "Ext.data.Store",
     alias: "store.commInfoStore",
     storeId: "commInfoStore",
-    model: "Test.model.commInfo",
+    model: "Test.model.CommInfo",
   
     autoLoad: false,
   

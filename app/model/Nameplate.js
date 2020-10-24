@@ -1,4 +1,4 @@
-Ext.define("Test.model.NamePlate", {
+Ext.define("Test.model.Nameplate", {
   extend: "Test.model.Base",
   fields: [
     { name: "meterID", type: "string" },
