@@ -1,4 +1,4 @@
-Ext.define('Test.model.MeterModel', {
+Ext.define('Test.model.MetadataModel', {
     extend: 'Test.model.Base',
 
     fields: [ // Field list is irrelevant here

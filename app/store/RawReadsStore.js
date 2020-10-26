@@ -2,7 +2,7 @@ Ext.define('Test.store.RawReadsStore', {
     extend: 'Ext.data.Store',
     alias: 'store.rawReadsStore',
     storeId: 'rawReadsStore',    
-    model: 'Test.model.MeterModel',
+    model: 'Test.model.MetadataModel',
     
     autoLoad: false,
 
