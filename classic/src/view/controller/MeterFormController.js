@@ -78,8 +78,8 @@ Ext.define("Test.view.controller.MeterFormController", {
         endEffectiveDate: dtEndEffectiveDate,
       },
     });
-
-    var usagePointDetails = Ext.StoreMgr.get("usagePointDetailsStore");
+/*
+    var usagePointDetails = Ext.StoreMgr.get("usagePointDetailsStore"); //FIX - doesn't find the store
     usagePointDetails.load({
       scope: this,
       params: {
@@ -90,5 +90,6 @@ Ext.define("Test.view.controller.MeterFormController", {
         endEffectiveDate: dtEndEffectiveDate,
       },
     });
+    */
   },
 });

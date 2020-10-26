@@ -1,4 +1,4 @@
-Ext.define("Test.view.main.AccountDetails", {
+Ext.define("Test.view.main.AccountDetailsPanel", {
   extend: "Ext.grid.Panel",
   xtype: "accountDetailsPanel",
   requires: ["Test.store.AccountDetailsStore",
