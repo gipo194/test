@@ -78,5 +78,17 @@ Ext.define("Test.view.controller.MeterFormController", {
         endEffectiveDate: dtEndEffectiveDate,
       },
     });
+
+    var usagePointDetails = Ext.StoreMgr.get("usagePointDetailsStore");
+    usagePointDetails.load({
+      scope: this,
+      params: {
+        meterId: meterId,
+        productAssignId: null,
+        stmtAcct: null,
+        usagePoint: null,
+        endEffectiveDate: dtEndEffectiveDate,
+      },
+    });
   },
 });
