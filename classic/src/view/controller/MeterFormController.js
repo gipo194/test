@@ -17,16 +17,20 @@ Ext.define("Test.view.controller.MeterFormController", {
     MySharedData.dtStartDate = dtStartDate;
     MySharedData.dtEndDate = dtEndDate;
     MySharedData.dtEndEffectiveDate = dtEndEffectiveDate;
-
+    
     var meterStore = Ext.StoreMgr.get("meterStore");
+    var mStore = Ext.data.StoreManager.lookup('meterStore');
+    mStore.removeAll();
+    mStore = mStore.getProxy().setUrl(MySharedData.serverUrl + 'Reads/' + meterId );
     meterStore.load({
-      scope: this,
-      params: {
+    scope: this,
+     /* params: {
         meterId: meterId,
         dtStartDate: dtStartDate,
         dtEndDate: dtEndDate,
         dtEndEffectiveDate: dtEndEffectiveDate,
-      },
+      }, */
+
       callback: function (records, operation, success) {
         var panel = btn
           .up("meterForm")
@@ -35,7 +39,7 @@ Ext.define("Test.view.controller.MeterFormController", {
         panel.setTitle("Regular Reads (" + meterStore.getCount() + ")");
       },
     });
-
+/*
     var skeletonStore = Ext.StoreMgr.get("skeletonStore");
     skeletonStore.load({
       scope: this,
@@ -78,6 +82,7 @@ Ext.define("Test.view.controller.MeterFormController", {
         endEffectiveDate: dtEndEffectiveDate,
       },
     });
+*/
 /*
     var usagePointDetails = Ext.StoreMgr.get("usagePointDetailsStore"); //FIX - doesn't find the store
     usagePointDetails.load({
