@@ -73,7 +73,43 @@ Ext.define("Test.view.main.MeterForm", {
       emptyText: "",
     },
     {
+      xtype: "combobox",
+      triggerAction: "all",
+      value: 0,
+      fieldLabel: "Period",
+      itemId: "period",
+      it: "periodCombo",
+      name: "period",
+
+      displayField: "name",
+      valueField: "value",
+      store: {
+        fields: ["name", "value"],
+        data: [
+          { name: "100 days", value: 0 },
+          { name: "1 Year", value: 1 },
+          { name: "All Data", value: 2 },
+          { name: "Custom Range", value: 3 },
+        ],
+      },
+      listeners: {
+        change: function (combo, newValue) {
+          var formPanel = combo.up("meterForm");
+          var fieldStart = formPanel.down("#dtStartDate");
+          var fieldEnd = formPanel.down("#dtEndDate");
+          if (newValue == 3) {
+            fieldStart.show();
+            fieldEnd.show();
+          } else {
+            fieldStart.hide();
+            fieldEnd.hide();
+          }
+        },
+      },
+    },
+    {
       fieldLabel: "From",
+      hidden: true,
       xtype: "datefield",
       itemId: "dtStartDate",
       name: "dtStartDate",
@@ -85,6 +121,7 @@ Ext.define("Test.view.main.MeterForm", {
     },
     {
       fieldLabel: "To",
+      hidden: true,
       xtype: "datefield",
       itemId: "dtEndDate",
       name: "dtEndDate",
@@ -104,9 +141,11 @@ Ext.define("Test.view.main.MeterForm", {
       margin: "0 5 0 0",
       editable: false,
       allowBlank: false,
+      hidden: true,
     },
     {
       xtype: "checkboxfield",
+      itemId: "chkHistorical",
       name: "chkHistorical",
       boxLabel: "Historical",
       bind: "{isHistorical}",
