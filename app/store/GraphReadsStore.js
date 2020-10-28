@@ -8,14 +8,14 @@ Ext.define('Test.store.GraphReadsStore', {
 
     listeners: {
         metachange: function(store, meta) {
-       //   var grid = Ext.getCmp('GraphReadsGrid');
-       //   grid.reconfigure(store, meta.columns);                
+          var grid = Ext.getCmp('GraphReadsGrid');
+          grid.reconfigure(store, meta.columns);                
         }
     },
     
     proxy: {
         type: 'jsonp',        
-        url: MySharedData.serverUrl + 'GraphReads', 
+      
         reader: {
             type: 'json',
             rootProperty: "data"

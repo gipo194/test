@@ -21,12 +21,16 @@ Ext.define("Test.view.main.ReadsTabs", {
       //hidden: true
     },
     {
-      title: "AcronymsPanel",
+      title: "Acronyms Panel",
       xtype: "acronymsPanel",
     },
     {
-      title: "AccountDetails",
+      title: "Account Details",
       xtype: "accountDetailsPanel",
     },
+   /* {
+      title: "Graph Reads",
+      xtype: "graphReadsGrid",
+    }, */
   ],
 });

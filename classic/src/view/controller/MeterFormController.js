@@ -34,21 +34,23 @@ Ext.define("Test.view.controller.MeterFormController", {
     MySharedData.dtEndDate = dtEndDate;
     MySharedData.dtEndEffectiveDate = dtEndEffectiveDate;
     MySharedData.isHistorical = isHistorical;
+
+    // build the period route suffix
+    var periodSuffix = "/" + combo;
+    if (combo == 3) {
+      // custom date range
+      periodSuffix = "/" + formatDate(dtStartDate) + "/" + formatDate(dtEndDate);
+    }
+
     var route = "";
-    if (!isHistorical) {
-      // build the route string
-      route = "Reads/" + meterId + "/" + combo;
-      if (combo == 3) {
-        // custom date range
-        route =
-          route + "/" + formatDate(dtStartDate) + "/" + formatDate(dtEndDate);
-      }
+
+    // begin region Regular Reads
+    if (isHistorical) {
+      route = "AdvanceMeterHistory/" + meterId + periodSuffix;
+    } else {
+      route = "Reads/" + meterId + periodSuffix;
     }
-    else
-    {
-        route = "AdvanceMeterHistory/" + meterId;
-    }
-   
+
     var mStore = Ext.data.StoreManager.lookup("meterStore");
     mStore.removeAll();
     mStore = mStore.getProxy().setUrl(MySharedData.serverUrl + route);
@@ -68,15 +70,18 @@ Ext.define("Test.view.controller.MeterFormController", {
         }
       },
     });
-    /*
+    // End Region Regular Reads
+
+    // Begin region Skeleton
+    route = "SkeletonReads/" + meterId + periodSuffix;
+
+    var skelStore = Ext.data.StoreManager.lookup("skeletonStore");
+    skelStore.removeAll();
+    skelStore = skelStore.getProxy().setUrl(MySharedData.serverUrl + route);
+
     var skeletonStore = Ext.StoreMgr.get("skeletonStore");
     skeletonStore.load({
       scope: this,
-      params: {
-        meterId: meterId,
-        dtStartDate: dtStartDate,
-        dtEndDate: dtEndDate,
-      },
       callback: function (records, operation, success) {
         var panel = btn
           .up("meterForm")
@@ -85,20 +90,46 @@ Ext.define("Test.view.controller.MeterFormController", {
         panel.setTitle("Skeleton Reads (" + skeletonStore.getCount() + ")");
       },
     });
+    // End Region Skeleton
+
+    // Begin Region Raw Reads
+    route = "RawReads/" + meterId + periodSuffix;
+    var rawStore = Ext.data.StoreManager.lookup("rawReadsStore");
+    rawStore.removeAll();
+    rawStore = rawStore.getProxy().setUrl(MySharedData.serverUrl + route);
 
     var rawReadsStore = Ext.StoreMgr.get("rawReadsStore");
     rawReadsStore.load({
       scope: this,
-      params: {
-        meterId: meterId,
-        dtStartDate: dtStartDate,
-        dtEndDate: dtEndDate,
-      },
       callback: function (records, operation, success) {
         var panel = btn.up("meterForm").up("meterHolder").down("rawReadsGrid");
         panel.setTitle("Raw Reads (" + rawReadsStore.getCount() + ")");
       },
     });
+    // end region Raw Reads
+/*
+    // Begin region Graph Reads
+    route = "GraphReads/" + meterId + periodSuffix;
+    var graphStore = Ext.data.StoreManager.lookup("graphReadsStore");
+    graphStore.removeAll();
+    graphStore = graphStore.getProxy().setUrl(MySharedData.serverUrl + route);
+
+    var graphReadsStore = Ext.StoreMgr.get("graphReadsStore");
+    graphReadsStore.load({
+      scope: this,
+      callback: function (records, operation, success) {
+        var panel = btn.up("meterForm").up("meterHolder").down("graphReadsGrid");
+        panel.setTitle("Graph Reads (" + graphReadsStore.getCount() + ")");
+      },
+    });
+    // End region Graph Reads
+*/
+    // begin region Account Details
+
+    route = "AccountDetails/" + meterId + '/' + formatDate(dtEndEffectiveDate);
+    var adStore = Ext.data.StoreManager.lookup("accountDetailsStore");
+    adStore.removeAll();
+    adStore = adStore.getProxy().setUrl(MySharedData.serverUrl + route);
 
     var accountDetailsStore = Ext.StoreMgr.get("accountDetailsStore");
     accountDetailsStore.load({
@@ -111,7 +142,8 @@ Ext.define("Test.view.controller.MeterFormController", {
         endEffectiveDate: dtEndEffectiveDate,
       },
     });
-*/
+    // end region Account Details
+
     /*
     var usagePointDetails = Ext.StoreMgr.get("usagePointDetailsStore"); //FIX - doesn't find the store
     usagePointDetails.load({
