@@ -3,7 +3,7 @@ Ext.define("Test.store.AdvanceStmtAcctHistoryStore", {
     extend: "Ext.data.Store",
     alias: "store.advanceStmtAcctHistoryStore",
     storeId: "advanceStmtAcctHistoryStore",
-    model: "Test.model.advanceStmtAcctHistory",
+    model: "Test.model.AdvanceStmtAcctHistory",
   
     autoLoad: false,
   

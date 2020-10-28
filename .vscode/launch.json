@@ -7,7 +7,7 @@
         {
             "type": "pwa-chrome",
             "request": "launch",
-            "name": "Shauns Chrome",
+            "name": "Chrome",
             "url": "http://localhost:1841",
             "webRoot": "${workspaceFolder}"
         }
