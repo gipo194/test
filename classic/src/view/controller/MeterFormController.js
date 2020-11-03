@@ -39,7 +39,8 @@ Ext.define("Test.view.controller.MeterFormController", {
     var periodSuffix = "/" + combo;
     if (combo == 3) {
       // custom date range
-      periodSuffix = "/" + formatDate(dtStartDate) + "/" + formatDate(dtEndDate);
+      periodSuffix =
+        "/" + formatDate(dtStartDate) + "/" + formatDate(dtEndDate);
     }
 
     var route = "";
@@ -87,7 +88,11 @@ Ext.define("Test.view.controller.MeterFormController", {
           .up("meterForm")
           .up("meterHolder")
           .down("skeletonReadsGrid");
-        panel.setTitle("Skeleton Reads (" + skeletonStore.getCount() + ")");
+        if (success) {
+          panel.setTitle("Skeleton Reads (" + skeletonStore.getCount() + ")");
+        } else {
+          panel.setTitle("Skeleton Reads (FAIL)");
+        }
       },
     });
     // End Region Skeleton
@@ -103,11 +108,15 @@ Ext.define("Test.view.controller.MeterFormController", {
       scope: this,
       callback: function (records, operation, success) {
         var panel = btn.up("meterForm").up("meterHolder").down("rawReadsGrid");
-        panel.setTitle("Raw Reads (" + rawReadsStore.getCount() + ")");
+        if (success) {
+          panel.setTitle("Raw Reads (" + rawReadsStore.getCount() + ")");
+        } else {
+          panel.setTitle("Raw Reads (FAIL)");
+        }
       },
     });
     // end region Raw Reads
-/*
+    /*
     // Begin region Graph Reads
     route = "GraphReads/" + meterId + periodSuffix;
     var graphStore = Ext.data.StoreManager.lookup("graphReadsStore");
@@ -126,7 +135,7 @@ Ext.define("Test.view.controller.MeterFormController", {
 */
     // begin region Account Details
 
-    route = "AccountDetails/" + meterId + '/' + formatDate(dtEndEffectiveDate);
+    route = "AccountDetails/" + meterId + "/" + formatDate(dtEndEffectiveDate);
     var adStore = Ext.data.StoreManager.lookup("accountDetailsStore");
     adStore.removeAll();
     adStore = adStore.getProxy().setUrl(MySharedData.serverUrl + route);
