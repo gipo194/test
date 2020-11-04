@@ -28,7 +28,7 @@ Ext.define("Test.view.main.MeterForm", {
         change: function (field, newval) {
           var formPanel = field.up("meterForm");
           formPanel.down("#meterId").labelEl.update(newval);
-          MySharedData.searchType = newval; // memorize in Global variable
+          MySharedData.searchType = newval; // memorize in Global variable          
         },
       },
       items: [
@@ -70,7 +70,7 @@ Ext.define("Test.view.main.MeterForm", {
       id: "meterIdField",
       name: "meterId",
       value: MySharedData.meterId,
-      emptyText: "",
+      emptyText: "",      
     },
     {
       xtype: "combobox",

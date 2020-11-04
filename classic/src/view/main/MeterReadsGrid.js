@@ -30,9 +30,9 @@ Ext.define("Test.view.main.MeterReadsGrid", {
     },
   ],
 
-  title: "MeterReads",
+  title: "Meter Reads",
   emptyText:
-    "No data could be retrieved for meter " + MySharedData.meterId + ".",
+    "No data could be retrieved for meter " + MySharedData.meterId + ".", // Doesn't set in time
 
   store: "meterStore",
   scrollable: true,
